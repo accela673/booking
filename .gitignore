@@ -2,7 +2,6 @@
 /dist
 /node_modules
 
-/pfp
 
 # Logs
 logs
@@ -37,3 +36,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 extensions.txt
+
+/pfp
