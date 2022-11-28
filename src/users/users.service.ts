@@ -14,18 +14,22 @@ export class UsersService {
 
 
     async createUser(user: CreateUserDto){
-        return await this.userRepo.save(user);
+        await this.userRepo.save(user);
+        return "User created succesfully"
       }
 
     async findUsers(){
         const [...users] = await this.userRepo.find()
+        if(![...users].length) return {message: "There are no users here yet, be the first!"}
         for(let user of users){delete user.password}
         return users
     } 
 
     async findOne(id: number){
-        const {password, ...rest} =  await this.userRepo.findOne({where: {user_id: id}})
-        return rest
+        const user =  await this.userRepo.findOne({where: {user_id: id}})
+        if(!user) return{message: `User with id ${id} doesn't exist`}
+        delete user.password
+        return user
     }
 
     async delete(id: number, email: string){
