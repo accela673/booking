@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe, Get, Param, Delete, Patch, Put, UseGuards, Request, UploadedFile, UseInterceptors, BadRequestException } from '@nestjs/common';
+import { Body, Controller, Post, UsePipes, ValidationPipe, Get, Param, Delete, UseGuards, Request, UseInterceptors, BadRequestException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
@@ -20,7 +20,7 @@ export class AuthController {
       properties: {
         email: { type: 'string', example: "example.email@gmail.com", nullable: false },
         password: { type: 'string', example: "example_password", nullable: false },
-        password_cofirm: {type: 'string', nullable: false},
+        password_cofirm: {type: 'string', nullable: true},
         first_name: { type: 'string',  nullable: false },
         last_name: { type: 'string', nullable: false },
         department: { type: 'string', description:`Example - "COM21"`, nullable: false },
@@ -29,7 +29,7 @@ export class AuthController {
           format: 'binary', nullable: true
         },
       },
-    },})
+    }})
     @UseInterceptors(FileInterceptor('post_image'))
     @Post('/registration')
     async createUser(@Request() req ,@Body() newUser:CreateUserDto){
@@ -56,8 +56,8 @@ export class AuthController {
     @ApiTags("Registration and login")
     @Post('auth/refresh')
     @ApiBody({schema: {properties: {refresh_token: {type: 'string'}}}})
-    async refresh(refresh_token: string){ 
-        return this.authService.refresh(refresh_token);
+    async refresh(@Body() refresh_token: string){ 
+        return
     }
 
 
@@ -68,7 +68,7 @@ export class AuthController {
     @ApiOperation({description: "This endpoint for deleting user"})
     @Delete('/delete')
       async deleteUserByID(@Request() req){
-        return await this.authService.delete(req.user.userId, req.user.email)
+        return await this.authService.delete(req.user.user_id, req.user.email)
       }
   
     @ApiTags("Users endpoints")

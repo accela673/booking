@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { PlaceModule } from './places/place.module';
+import { BooksModule } from './books/books.module';
 
 @Module({
   
@@ -19,7 +20,7 @@ import { PlaceModule } from './places/place.module';
     synchronize: true,
     autoLoadEntities: true,
   }), 
-  AuthModule, PlaceModule, ],
+  AuthModule, PlaceModule, BooksModule, ],
   controllers: [],
   providers: [],
 })

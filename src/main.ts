@@ -15,6 +15,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
   ConfigModule.forRoot({envFilePath: ".env"})
   app.useGlobalPipes(new ValidationPipe())
   const PORT = process.env.PORT || 5000

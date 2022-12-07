@@ -37,13 +37,14 @@ export class AuthService {
             department: user.department
         };
         return {
-            access_token: this.jwtService.sign(payload,{secret: process.env.SECRET, expiresIn: '15m'}),
+            access_token: this.jwtService.sign(payload,{secret: process.env.SECRET, expiresIn: '1h'}),
             refresh_token: this.jwtService.sign(payload,{secret: process.env.SECRET, expiresIn: '7d'})
         };
     }
 
-    async refresh(token: string){
+    async refresh(token: string, id: number){
         return
+        
     }
 
     async createUser(user: CreateUserDto): Promise<UsersEntity>{

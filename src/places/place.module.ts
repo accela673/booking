@@ -7,6 +7,6 @@ import { PlaceService } from './place.service';
 @Module({
   imports: [TypeOrmModule.forFeature([PlaceEntity])],
   controllers: [PlaceController],
-  providers: [PlaceService]
+  providers: [PlaceService],
 })
 export class PlaceModule {}
