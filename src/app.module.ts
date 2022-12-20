@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { PlaceModule } from './places/place.module';
-import { BooksModule } from './books/books.module';
+import { UsersModule } from './users/users.module';
+import { PlaceModule } from './place/place.module';
+import { BookModule } from './books/book.module';
 
 @Module({
   
@@ -20,7 +21,8 @@ import { BooksModule } from './books/books.module';
     synchronize: true,
     autoLoadEntities: true,
   }), 
-  AuthModule, PlaceModule, BooksModule, ],
+  
+  AuthModule, UsersModule, PlaceModule, BookModule, ],
   controllers: [],
   providers: [],
 })
