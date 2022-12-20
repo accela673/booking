@@ -45,18 +45,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+Api created with Swagger
 
-```bash
-# unit tests
-$ npm run test
+![Снимок экрана 2022-12-21 004922](https://user-images.githubusercontent.com/101983496/208743673-36f59def-cdb4-46de-8424-c4c083e8d636.png)
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
 
 ## Support
 
