@@ -1,0 +1,30 @@
+service: booking
+useDotenv: true
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  stage: beta
+  region: us-west-2
+  runtime: nodejs14.x
+  environment: 
+    PORT: ${env:PORT}
+    DB_HOST: ${env:DB_HOST}
+    DB_PORT: ${env:DB_PORT}
+    DB_USERNAME: ${env:DB_USERNAME}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_NAME: ${env:DB_NAME}
+    JWT_SECRET: ${env:JWT_SECRET}
+
+functions:
+  main: 
+    handler: dist/serverless.handler
+    events: 
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'         
